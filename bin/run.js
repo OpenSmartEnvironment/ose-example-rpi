@@ -6,7 +6,7 @@
  * @readme
  * This application allows to control features of the Raspberry Pi. It
  * can be used on its own or together with other example OSE
- * applications.
+ * applications, see [Media player example].
  *
  *
  * @oseExample
@@ -16,12 +16,8 @@
  * @usage
  * ## Usage
  *
- * To install the example application, do one of the following:
+ * To install the example application, do the following:
  *
- *     npm install ose-example-rpi
- *
- * or
- *    
  *     git clone https://github.com/OpenSmartEnvironment/ose-example-rpi
  *     cd ose-example-rpi
  *     npm install
@@ -44,9 +40,8 @@
  * instructions](https://github.com/fivdi/onoff#installation).
  *
  *
- * To start the application from the install directory:
+ * Start the Raspberry Pi example as follows:
  *
- *     cd ose-example-rpi
  *     ./bin/run.js
  *
  *
@@ -221,14 +216,13 @@ exports['ose-gaia'] = {
 exports.space = {
   id: 'ose/lib/space',         // Module id
   name: 'example.org',         // Name of the space
-  home: 'media',               // Home instance of the space
+  home: 'player',               // Home instance of the space
 
   // Peers to connect to
   peers: {
-    // Media player OSE instance – When running the lirc and player
-    // OSE instances on different machines, change the following IP
+    // Media player OSE instance – Change the following IP
     // address to that of the media player instance.
-    media: 'ws://10.166.25.8:4431',
+    player: 'ws://10.166.25.8:4431',  // CHANGE ME !!!!!
   }
 };
 
