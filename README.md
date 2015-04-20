@@ -1,7 +1,7 @@
 # Open Smart Environment - Raspberry Pi example
 This application allows to control features of the Raspberry Pi. It
 can be used on its own or together with other example OSE
-applications.
+applications, see [Media player example](http://opensmartenvironment.github.io/doc/#mediaplayerexample).
 
 ## Important links
 This package is a part of the OSE suite. For more information, see the following links:
@@ -48,12 +48,8 @@ OSE has the following prerequisites:
 
 ## Usage
 
-To install the example application, do one of the following:
+To install the example application, do the following:
 
-    npm install ose-example-rpi
-
-or
-   
     git clone https://github.com/OpenSmartEnvironment/ose-example-rpi
     cd ose-example-rpi
     npm install
@@ -76,9 +72,8 @@ If you want to use this example on a BeagleBone, see [these
 instructions](https://github.com/fivdi/onoff#installation).
 
 
-To start the application from the install directory:
+Start the Raspberry Pi example as follows:
 
-    cd ose-example-rpi
     ./bin/run.js
 
 
