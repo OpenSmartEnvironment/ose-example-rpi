@@ -25,9 +25,7 @@
     "raspberry pi"
   ],
   "dependencies": {
-    "ose1": "git+https://github.com/OpenSmartEnvironment/ose.git"
-  },
-  "aaa": {
+    "ose": "git+https://github.com/OpenSmartEnvironment/ose.git",
     "ose-control": "git+https://github.com/OpenSmartEnvironment/ose-control.git",
     "ose-fs": "git+https://github.com/OpenSmartEnvironment/ose-fs.git",
     "ose-gaia": "git+https://github.com/OpenSmartEnvironment/ose-gaia.git",
