@@ -3,15 +3,12 @@
 /**
  * @caption Raspberry Pi example
  *
+ *
  * @readme
  * This application allows to control features of the Raspberry Pi. It
  * can be used on its own or together with other example OSE
  * applications, see [Media player example].
  *
- *
- * @oseExample
- * 
- * @description
  *
  * @usage
  * ## Usage
