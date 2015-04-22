@@ -1,6 +1,5 @@
 {
   "name": "ose-example-rpi",
-  "preferGlobal": true,
   "version": "0.1.10",
   "author": "Jan Snasel <snaselj@gmail.com>",
   "description": "Open Smart Environment Raspberry Pi example",
@@ -26,11 +25,13 @@
     "raspberry pi"
   ],
   "dependencies": {
-    "ose": "*",
-    "ose-gaia": "*",
-    "ose-control": "*",
-    "ose-fs": "*",
-    "ose-rpi": "*"
+    "ose1": "git+https://github.com/OpenSmartEnvironment/ose.git"
+  },
+  "aaa": {
+    "ose-control": "git+https://github.com/OpenSmartEnvironment/ose-control.git",
+    "ose-fs": "git+https://github.com/OpenSmartEnvironment/ose-fs.git",
+    "ose-gaia": "git+https://github.com/OpenSmartEnvironment/ose-gaia.git",
+    "ose-rpi": "git+https://github.com/OpenSmartEnvironment/ose-rpi.git"
   },
   "license": "GPL-3.0+",
   "engines": {
