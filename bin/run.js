@@ -19,19 +19,23 @@
  *     cd ose-example-rpi
  *     npm install
  *
- *
  * If you want to use this example on a BeagleBone, see [these
  * instructions](https://github.com/fivdi/onoff#installation).
  *
+ * If you wish to use this exaple together with the OSE Media player,
+ * configure its IP address and port number within your network in
+ * `bin/run.js`.
+ *
+ *     player: 'ws://[ip address]:[port]'
  *
  * Start the Raspberry Pi example as follows:
  *
  *     ./bin/run.js
  *
- *
  * To access the [HTML5 frontend], open the following URL in Firefox
- * 37 or newer with the `dom.webcomponents.enabled` option enabled in
- * `about:config`:
+ * 37 or newer. (Iceweasel in Debian Jessie is too old.)
+ *
+ * <b>Enable the `dom.webcomponents.enabled` option in `about:config`:</b>
  *
  *     http://localhost:4432
  *
