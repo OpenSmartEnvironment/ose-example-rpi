@@ -13,6 +13,11 @@
  * @usage
  * ## Usage
  *
+ * For the Raspberry Pi example application to work, you need the following prerequisities:
+ * - Node.js > 0.10, npm, git
+ * - bower<br>
+ *   `sudo npm install -g bower`
+ *
  * To install the example application, do the following:
  *
  *     git clone https://github.com/OpenSmartEnvironment/ose-example-rpi
@@ -33,9 +38,8 @@
  *     ./bin/run.js
  *
  * To access the [HTML5 frontend], open the following URL in Firefox
- * 37 or newer. (Iceweasel in Debian Jessie is too old.)
- *
- * <b>Enable the `dom.webcomponents.enabled` option in `about:config`:</b>
+ * **37 or newer** (Iceweasel in Debian Jessie is too old).<br>
+ * **Before openning the link, enable the `dom.webcomponents.enabled` option in `about:config`.**
  *
  *     http://localhost:4432
  *
