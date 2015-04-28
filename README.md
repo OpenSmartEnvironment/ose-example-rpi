@@ -3,6 +3,10 @@ This application allows to control features of the Raspberry Pi. It
 can be used on its own or together with other example OSE
 applications, see [Media player example](http://opensmartenvironment.github.io/doc/#mediaplayerexample).
 
+## Features
+- GPIO digital input/output (light, switch, heater)
+- taking pictures using `raspistill`
+
 ## Important links
 This package is a part of the OSE suite. For more information, see the following links:
 - [Raspberry Pi example documentation](http://opensmartenvironment.github.io/doc/#example-rpi)
@@ -48,7 +52,7 @@ OSE has the following prerequisites:
 
 ## Usage
 
-For the Raspberry Pi example application to work, you need the following prerequisities:
+For the Raspberry Pi example application to work, you need the following prerequisites:
 - Node.js > 0.10, npm, git
 - bower<br>
   `sudo npm install -g bower`
@@ -62,7 +66,7 @@ To install the example application, do the following:
 If you want to use this example on a BeagleBone, see [these
 instructions](https://github.com/fivdi/onoff#installation).
 
-If you wish to use this exaple together with the OSE Media player,
+If you wish to use this example together with the OSE Media player,
 configure its IP address and port number within your network in
 `bin/run.js`.
 
@@ -72,11 +76,33 @@ Start the Raspberry Pi example as follows:
 
     ./bin/run.js
 
+
 To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in Firefox
 **37 or newer** (Iceweasel in Debian Jessie is too old).<br>
-**Before openning the link, enable the `dom.webcomponents.enabled` option in `about:config`.**
+**Before opening the link, enable the `dom.webcomponents.enabled`
+option in `about:config`.**
 
     http://localhost:4432
+
+
+### Known bug: 
+
+If you see the following error, just restart `./bin/run.js`.
+
+    ha> ========================================================
+    1430212384 'ERROR | ose | EPERM |' 'EPERM, write'
+    Stack Trace:
+    Error: EPERM, write
+        at Error (native)
+    --------------------------------------------------------
+    Logged at:
+    Trace
+        at Object.exports.error.exports.err (/home/pi/ose-example-rpi/node_modules/ose/lib/logger.js:276:11)
+        at Object.exports.error (/home/pi/ose-example-rpi/node_modules/ose/lib/link.js:594:11)
+        at /home/pi/ose-example-rpi/node_modules/ose-control/lib/pin/dout.js:106:14
+        at /home/pi/ose-example-rpi/node_modules/ose-rpi/lib/rpi/node.js:286:7
+        at FSReqWrap.strWrapper (fs.js:570:5)
+    ========================================================
 
 ## Licence
 This software is released under the terms of the [GNU General
