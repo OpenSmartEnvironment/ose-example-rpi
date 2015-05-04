@@ -87,6 +87,8 @@
 // The OSE framework is initialized by requiring the "ose" package:
 var O = require('ose').app(module, 'example');
 
+var Path = require('path');
+
 /*!
  * OSE is configured by a configuration object, `module.exports` in
  * this case. Each property of this object defines the configuration
@@ -96,7 +98,7 @@ var O = require('ose').app(module, 'example');
 
 // Basic properties of OSE instance
 exports.ose = {
-  name: 'rpi',          // Name of this OSE instance
+  name: 'rpi',           // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
 };
 
@@ -232,43 +234,56 @@ exports['ose-gaia'] = {
 
 // Definition of data structure, the space named "example.org" contains all your data
 exports.space = {
-  id: 'ose/lib/space',         // Module id
+  id: 'ose/lib/space',         // Plugin module id
   name: 'example.org',         // Name of the space
-  home: 'player',               // Home instance of the space
+  home: 'player',              // Home instance of the space
 
   // Peers to connect to
   peers: {
-    // Media player OSE instance – Change the following IP
+    // Media player OSE instance - Change the following IP
     // address to that of the media player instance.
-    player: 'ws://10.166.25.8:4431',  // CHANGE ME !!!!!
+    player: 'CHANGE_ME',  // example url: `player: 'ws://10.166.25.8:4431'`
   }
 };
 
 // The space is partitioned into shards:
 // Raspberry Pi shard
 exports.control = {
-  id: 'ose/lib/shard',
+  id: 'ose/lib/shard',      // Plugin module id
   sid: 6,                   // Shard id unique within the space
   scope: 'control',         // Scope the shard belongs to
-  alias: 'rpi',            // Shard alias
+  alias: 'rpi',             // Shard alias
   entries: initRpi,         // Method initializing entries belonging
                             // to the shard, defined below
+
+  /*
+  db: {                     // Shard database backend
+    id: 'ose-fs/lib/jsonDb',
+    root: Path.dirname(Path.dirname(module.filename)) + '/data',
+  }
+  */
 };
 
 // Images taken by camera1
 exports.images = {
-  id: 'ose/lib/shard',
+  id: 'ose/lib/shard',      // Plugin module id
   sid: 7,                   // Shard id unique within the space
   scope: 'fs',              // Scope the shard belongs to
-  alias: 'rpiImages',      // Shard alias
+  alias: 'rpiImages',       // Shard alias
   db: {                     // Shard database backend
-    class: 'ose-fs/lib/db',
-    root: require('path').dirname(module.filename) + '/images',
+    id: 'ose-fs/lib/db',
+    root: Path.dirname(Path.dirname(module.filename)) + '/images',
   }
 };
 
 // "rpi" shard initialization method.
 function initRpi(shard) {
+  /*
+  if (shard.rev) {
+    shard.cacheAll(O._.noop());
+    return;
+  }
+  */
 
   // Entry representing Raspberry Pi
   shard.entry('rpi', 'rpi', {
@@ -284,8 +299,6 @@ function initRpi(shard) {
       shard: {alias: 'rpiImages'},
     }
   });
-
-//  shard.cache.camera1.setState({last: '/1425794369884.png'});
 
   // Entry representing switch
   shard.entry('switch1', 'switch', {
@@ -320,7 +333,11 @@ function initRpi(shard) {
     master: 'rpi',
     pin: 17,
   });
+
+//  shard.db.setRev(1, O._.noop);
+
+  return;
 }
 
 // Start OSE instance
-O.run();
+O.run(exports);
