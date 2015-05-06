@@ -70,7 +70,7 @@ If you wish to use this example together with the OSE Media player,
 configure its IP address and port number within your network in
 `bin/run.js`.
 
-    player: 'ws://[ip address](http://opensmartenvironment.github.io/doc/#ipaddress):[port](http://opensmartenvironment.github.io/doc/#port)'
+    player: 'ws://IP_ADDRESS:PORT'
 
 Start the Raspberry Pi example as follows:
 
@@ -85,7 +85,7 @@ option in `about:config`.**
     http://localhost:4432
 
 
-### Known bug: 
+### Known bug:
 
 If you see the following error, just restart `./bin/run.js`.
 

@@ -36,7 +36,7 @@
  * configure its IP address and port number within your network in
  * `bin/run.js`.
  *
- *     player: 'ws://[ip address]:[port]'
+ *     player: 'ws://IP_ADDRESS:PORT'
  *
  * Start the Raspberry Pi example as follows:
  *
@@ -70,6 +70,7 @@
  *         at FSReqWrap.strWrapper (fs.js:570:5)
  *     ========================================================
  *
+ * @scope control
  * @module example-rpi
  * @main example-rpi
  */
