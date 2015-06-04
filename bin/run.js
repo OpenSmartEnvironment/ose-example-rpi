@@ -166,7 +166,7 @@ exports['ose-gaia'] = {
   dashboard: [
     {
       caption: 'Raspberry Pi',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'rpi',
         alias: 'rpi',
@@ -174,7 +174,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Camera',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'camera1',
         alias: 'rpi',
@@ -182,14 +182,14 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Images',
-      pagelet: 'list',
+      view: 'list',
       ident: {
         alias: 'rpiImages',
       }
     },
     {
       caption: 'Light',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'light1',
         alias: 'rpi',
@@ -197,7 +197,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Heater',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'heater1',
         alias: 'rpi',
@@ -205,7 +205,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Switch',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'switch1',
         alias: 'rpi',
@@ -213,7 +213,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Lights',
-      pagelet: 'list',
+      view: 'list',
       listItems: true,
       ident: {
         kind: 'light',
@@ -222,7 +222,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Heaters',
-      pagelet: 'list',
+      view: 'list',
       listItems: true,
       ident: {
         kind: 'heater',
