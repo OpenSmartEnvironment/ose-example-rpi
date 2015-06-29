@@ -216,6 +216,7 @@ exports['ose-gaia'] = {
       view: 'list',
       listItems: true,
       ident: {
+        scope: 'control',
         kind: 'light',
         alias: 'rpi',
       }
@@ -225,6 +226,7 @@ exports['ose-gaia'] = {
       view: 'list',
       listItems: true,
       ident: {
+        scope: 'control',
         kind: 'heater',
         alias: 'rpi',
       }
