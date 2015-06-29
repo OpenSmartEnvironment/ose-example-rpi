@@ -66,7 +66,7 @@ To install the example application, do the following:
 If you want to use this example on a BeagleBone, see [these
 instructions](https://github.com/fivdi/onoff#installation).
 
-If you wish to use this example together with the OSE Media player,
+If you wish to use this example together with the [Media player example](http://opensmartenvironment.github.io/doc/#mediaplayerexample),
 configure its IP address and port number within your network in
 `bin/run.js`.
 
