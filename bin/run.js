@@ -51,25 +51,6 @@
  *     http://localhost:4432
  *
  *
- * ### Known bug:
- *
- * If you see the following error, just restart `./bin/run.js`.
- *
- *     ha> ========================================================
- *     1430212384 'ERROR | ose | EPERM |' 'EPERM, write'
- *     Stack Trace:
- *     Error: EPERM, write
- *         at Error (native)
- *     --------------------------------------------------------
- *     Logged at:
- *     Trace
- *         at Object.exports.error.exports.err (/home/pi/ose-example-rpi/node_modules/ose/lib/logger.js:276:11)
- *         at Object.exports.error (/home/pi/ose-example-rpi/node_modules/ose/lib/link.js:594:11)
- *         at /home/pi/ose-example-rpi/node_modules/ose-control/lib/pin/dout.js:106:14
- *         at /home/pi/ose-example-rpi/node_modules/ose-rpi/lib/rpi/node.js:286:7
- *         at FSReqWrap.strWrapper (fs.js:570:5)
- *     ========================================================
- *
  * @scope control
  * @module example-rpi
  * @main example-rpi
