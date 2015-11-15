@@ -82,6 +82,7 @@ var Path = require('path');
 exports.ose = {
   name: 'rpi',           // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
+  spid: 1,
 };
 
 
@@ -149,47 +150,47 @@ exports['ose-gaia'] = {
       caption: 'Raspberry Pi',
       view: 'detail',
       ident: {
-        id: 'rpi',
-        alias: 'rpi',
+        entry: 'rpi',
+        shard: 'rpi',
       }
     },
     {
       caption: 'Camera',
       view: 'detail',
       ident: {
-        id: 'camera1',
-        alias: 'rpi',
+        entry: 'camera1',
+        shard: 'rpi',
       }
     },
     {
       caption: 'Images',
       view: 'list',
       ident: {
-        alias: 'rpiImages',
+        shard: 'rpiImages',
       }
     },
     {
       caption: 'Light',
       view: 'detail',
       ident: {
-        id: 'light1',
-        alias: 'rpi',
+        entry: 'light1',
+        shard: 'rpi',
       }
     },
     {
       caption: 'Heater',
       view: 'detail',
       ident: {
-        id: 'heater1',
-        alias: 'rpi',
+        entry: 'heater1',
+        shard: 'rpi',
       }
     },
     {
       caption: 'Switch',
       view: 'detail',
       ident: {
-        id: 'switch1',
-        alias: 'rpi',
+        entry: 'switch1',
+        shard: 'rpi',
       }
     },
     {
@@ -197,9 +198,8 @@ exports['ose-gaia'] = {
       view: 'list',
       listItems: true,
       ident: {
-        scope: 'control',
         kind: 'light',
-        alias: 'rpi',
+        shard: 'rpi',
       }
     },
     {
@@ -207,9 +207,8 @@ exports['ose-gaia'] = {
       view: 'list',
       listItems: true,
       ident: {
-        scope: 'control',
         kind: 'heater',
-        alias: 'rpi',
+        shard: 'rpi',
       }
     },
   ],
@@ -240,6 +239,8 @@ exports.control = {
   entries: initRpi,         // Method initializing entries belonging
                             // to the shard, defined below
 
+  schema: 'ose/lib/shard/level',
+
   /*
   db: {                     // Shard database backend
     id: 'ose-fs/lib/jsonDb',
@@ -262,37 +263,36 @@ exports.images = {
 
 // "rpi" shard initialization method.
 function initRpi(shard) {
-  /*
-  if (shard.rev) {
-    shard.cacheAll(O._.noop());
-    return;
-  }
-  */
+  var trans = shard.startTrans();
 
   // Entry representing Raspberry Pi
-  shard.entry('rpi', 'rpi', {
+  trans.add('rpi', {
+    alias: 'rpi',
     name: 'Raspberry Pi 1',
-//    dummy: true,
+    dummy: true,  // Enable this to use this example without GPIO capable hardware
   });
 
   // Entry representing camera
-  shard.entry('camera1', 'raspicam', {
+  trans.add('raspicam', {
+    alias: 'camera1',
     name: 'Raspberry Pi camera',
     camera: 0,
     save: {
-      shard: {alias: 'rpiImages'},
+      shard: 'rpiImages',
     }
   });
 
   // Entry representing switch
-  shard.entry('switch1', 'switch', {
+  trans.add('switch', {
+    alias: 'switch1',
     name: 'Switch on Raspberry Pi 1',
     master: 'rpi',
     pin: 4,
   });
 
   // Entry representing light
-  shard.entry('light1', 'light', {
+  trans.add('light', {
+    alias: 'light1',
     name: 'Light on Raspberry Pi',
     switch: 'switch1',
     master: 'rpi',
@@ -304,23 +304,23 @@ function initRpi(shard) {
   });
 
   // Entry representing high tariff sensor
-  shard.entry('highTariff', 'din', {
+  trans.add('din', {
+    alias: 'highTariff',
     name: 'High tariff state',
     master: 'rpi',
     pin: 15,
   });
 
   // Entry representing heater
-  shard.entry('heater1', 'heater', {
+  trans.add('heater', {
+    alias: 'heater1',
     name: 'Heater on Raspberry Pi',
     tariff: 'highTariff',
     master: 'rpi',
     pin: 17,
   });
 
-//  shard.db.setRev(1, O._.noop);
-
-  return;
+  return trans.commit(O.log.bindError());
 }
 
 // Start OSE instance
