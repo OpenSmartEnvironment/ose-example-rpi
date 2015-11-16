@@ -82,7 +82,7 @@ var Path = require('path');
 exports.ose = {
   name: 'rpi',           // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
-  spid: 1,
+  spid: 2,
 };
 
 
