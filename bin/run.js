@@ -239,7 +239,6 @@ exports.control = {
   entries: initRpi,         // Method initializing entries belonging
                             // to the shard, defined below
 
-  schema: 'ose/lib/shard/level',
 
   /*
   db: {                     // Shard database backend
