@@ -85,6 +85,7 @@ exports.ose = {
   name: 'rpi',           // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
   spid: 2,
+// dummy: true,  // Enable this to use this example without GPIO capable hardware
 };
 
 
@@ -270,7 +271,7 @@ function initRpi(shard) {
   trans.add('rpi', {
     alias: 'rpi',
     name: 'Raspberry Pi 1',
-    dummy: true,  // Enable this to use this example without GPIO capable hardware
+    dummy: exports.ose.dummy,  // Enable this to use this example without GPIO capable hardware
   });
 
   // Entry representing camera
