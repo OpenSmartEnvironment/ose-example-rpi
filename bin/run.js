@@ -85,7 +85,7 @@ exports.ose = {
   name: 'rpi',           // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
   spid: 2,
-// dummy: true,  // Enable this to use this example without GPIO capable hardware
+//  dummy: true,  // Enable this to use this example without GPIO capable hardware
 };
 
 
@@ -257,8 +257,7 @@ exports.images = {
   sid: 7,                   // Shard id unique within the space
   scope: 'fs',              // Scope the shard belongs to
   alias: 'rpiImages',       // Shard alias
-  db: {                     // Shard database backend
-    id: 'ose-fs/lib/db',
+  schema: {                 // Shard schema
     root: Path.dirname(Path.dirname(module.filename)) + '/images',
   }
 };
