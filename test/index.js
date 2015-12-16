@@ -12,7 +12,7 @@ var Gaia = O.runtime === 'browser' ? require('ose-test/lib/gaia') : null;
 // Tests {{{1
 
 exports.add('Get space', function(cb) {  // {{{2
-  O.getSpace('example.org', function(err, space) {
+  O.data.getSpace('example.org', function(err, space) {
     if (err) return cb(err);
 
     Equal(space.SUBJECT_STATE.READY, space.subjectState, 'exports.space state');

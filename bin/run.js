@@ -51,7 +51,6 @@
  *     http://localhost:4432
  *
  *
- * @scope control
  * @module example-rpi
  * @main example-rpi
  */
@@ -68,7 +67,6 @@
 
 // The OSE framework is initialized by requiring the "ose" package:
 var O = require('ose').module(module);
-O.scope = 'control';
 O.package = 'ose-example-rpi';
 
 var Path = require('path');
@@ -85,7 +83,7 @@ exports.ose = {
   name: 'rpi',           // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
   spid: 2,
-//  dummy: true,  // Enable this to use this example without GPIO capable hardware
+  dummy: true,  // Enable this to use this example without GPIO capable hardware
 };
 
 
@@ -145,7 +143,7 @@ exports.http = {
 
 
 // Enable HTML5 frontend
-exports['ose-gaia'] = {
+exports['ose-html5'] = {
 
   // Define dashboard content
   dashboard: [
@@ -237,29 +235,19 @@ exports.space = {
 exports.control = {
   id: 'ose/lib/shard',      // Plugin module id
   sid: 6,                   // Shard id unique within the space
-  scope: 'control',         // Scope the shard belongs to
+  schema: 'control',        // Schema the shard belongs to
   alias: 'rpi',             // Shard alias
   entries: initRpi,         // Method initializing entries belonging
                             // to the shard, defined below
-
-
-  /*
-  db: {                     // Shard database backend
-    id: 'ose-fs/lib/jsonDb',
-    root: Path.dirname(Path.dirname(module.filename)) + '/data',
-  }
-  */
 };
 
 // Images taken by camera1
 exports.images = {
   id: 'ose/lib/shard',      // Plugin module id
   sid: 7,                   // Shard id unique within the space
-  scope: 'fs',              // Scope the shard belongs to
+  schema: 'fs',             // Schema the shard belongs to
   alias: 'rpiImages',       // Shard alias
-  schema: {                 // Shard schema
-    root: Path.dirname(Path.dirname(module.filename)) + '/images',
-  }
+  root: Path.dirname(Path.dirname(module.filename)) + '/images',
 };
 
 // "rpi" shard initialization method.
