@@ -167,6 +167,7 @@ exports['ose-html5'] = {
       caption: 'Images',
       view: 'list',
       ident: {
+        map: 'all',
         shard: 'rpiImages',
       }
     },
@@ -191,24 +192,6 @@ exports['ose-html5'] = {
       view: 'detail',
       ident: {
         entry: 'switch1',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Lights',
-      view: 'list',
-      listItems: true,
-      ident: {
-        kind: 'light',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Heaters',
-      view: 'list',
-      listItems: true,
-      ident: {
-        kind: 'heater',
         shard: 'rpi',
       }
     },

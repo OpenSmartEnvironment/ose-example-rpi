@@ -7,7 +7,7 @@ exports = O.init('test/test');
 var Assert = O.chai.assert;
 var Equal = Assert.equal;
 
-var Gaia = O.runtime === 'browser' ? require('ose-test/lib/gaia') : null;
+var Html5 = O.runtime === 'browser' ? require('ose-test/lib/html5') : null;
 
 // Tests {{{1
 
@@ -110,13 +110,13 @@ exports.add('Dashboard', {runtime: 'browser'}, function(cb) {  // {{{2
   return O.ui.display({content: {view: 'dashboard'}}, function(err) {
     if (err) return cb(err);
 
-    var d = Gaia.find(O.ui.main, 'gaia-list');
-    Gaia.html(d.header, 'Dashboard');
-    var items = Gaia.list(d, 'li>div>h3', ['Raspberry Pi', 'Camera', 'Images', 'Light', 'Heater', 'Switch', 'Lights', 'Heaters']);
+    var d = Html5.find(O.ui.main, 'ul');
+    Html5.html(d.header, 'Dashboard');
+    var items = Html5.list(d, 'li>div>h3', ['Raspberry Pi', 'Camera', 'Images', 'Light', 'Heater', 'Switch', 'Lights', 'Heaters']);
 
     return O.async.nextTick(function() {
       items[0].click();
-      exports.view = Gaia.awaitView(cb);
+      exports.view = Html5.awaitView(cb);
     });
   });
 });
@@ -128,7 +128,7 @@ exports.add('Emulate switch', {runtime: 'node'}, function(cb) {  // {{{2
 exports.awaitSocket(exports.socket);
 
 exports.add('Read switch', {runtime: 'browser'}, function(cb) {  // {{{2
-  exports.list = Gaia.list(exports.view, 'li > div > h3 > span:first-child', ['4 – din', '14 – dout', '15 – din', '17 – dout']);
+  exports.list = Html5.list(exports.view, 'li > div > h3 > span:first-child', ['4 – din', '14 – dout', '15 – din', '17 – dout']);
   return cb();
 });
 
