@@ -266,12 +266,10 @@ function initRpi(shard) {
   trans.add('light', {
     alias: 'light1',
     name: 'Light on Raspberry Pi',
-    switch: 'switch1',
+    switches: ['switch1'],
     master: 'rpi',
-    pin: {
-      index: 14,
-      type: 'dout',
-    },
+    pinType: 'dout',
+    channels: {white: 14},
     autoOff: 10,
   });
 
