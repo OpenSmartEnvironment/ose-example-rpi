@@ -235,7 +235,7 @@ exports.images = {
 
 // "rpi" shard initialization method.
 function initRpi(shard) {
-  var trans = shard.startTrans();
+  var trans = shard.transaction();
 
   // Entry representing Raspberry Pi
   trans.add('rpi', {
