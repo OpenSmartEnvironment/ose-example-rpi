@@ -220,8 +220,9 @@ exports.control = {
   sid: 6,                   // Shard id unique within the space
   schema: 'control',        // Schema the shard belongs to
   alias: 'rpi',             // Shard alias
-  entries: initRpi,         // Method initializing entries belonging
-                            // to the shard, defined below
+  upgrades: [
+    initRpi,  // Method initializing entries belonging to the shard, defined below
+  ],
 };
 
 // Images taken by camera1
@@ -234,18 +235,16 @@ exports.images = {
 };
 
 // "rpi" shard initialization method.
-function initRpi(shard) {
-  var trans = shard.transaction();
-
+function initRpi(transaction, cb) {
   // Entry representing Raspberry Pi
-  trans.add('rpi', {
+  transaction.add('rpi', {
     alias: 'rpi',
     name: 'Raspberry Pi 1',
     dummy: exports.ose.dummy,  // Enable this to use this example without GPIO capable hardware
   });
 
   // Entry representing camera
-  trans.add('raspicam', {
+  transaction.add('raspicam', {
     alias: 'camera1',
     name: 'Raspberry Pi camera',
     camera: 0,
@@ -255,7 +254,7 @@ function initRpi(shard) {
   });
 
   // Entry representing switch
-  trans.add('switch', {
+  transaction.add('switch', {
     alias: 'switch1',
     name: 'Switch on Raspberry Pi 1',
     master: 'rpi',
@@ -263,7 +262,7 @@ function initRpi(shard) {
   });
 
   // Entry representing light
-  trans.add('light', {
+  transaction.add('light', {
     alias: 'light1',
     name: 'Light on Raspberry Pi',
     switches: ['switch1'],
@@ -274,7 +273,7 @@ function initRpi(shard) {
   });
 
   // Entry representing high tariff sensor
-  trans.add('din', {
+  transaction.add('din', {
     alias: 'highTariff',
     name: 'High tariff state',
     master: 'rpi',
@@ -282,7 +281,7 @@ function initRpi(shard) {
   });
 
   // Entry representing heater
-  trans.add('heater', {
+  transaction.add('heater', {
     alias: 'heater1',
     name: 'Heater on Raspberry Pi',
     tariff: 'highTariff',
@@ -290,7 +289,7 @@ function initRpi(shard) {
     pin: 17,
   });
 
-  return trans.commit(O.log.bindError());
+  return cb();
 }
 
 // Start OSE instance
