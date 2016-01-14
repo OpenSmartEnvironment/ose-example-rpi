@@ -166,8 +166,8 @@ exports['ose-html5'] = {
     {
       caption: 'Images',
       view: 'list',
+      query: 'all',
       ident: {
-        map: 'all',
         shard: 'rpiImages',
       }
     },
