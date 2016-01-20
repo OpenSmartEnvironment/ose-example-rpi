@@ -66,8 +66,9 @@
 'use strict';
 
 // The OSE framework is initialized by requiring the "ose" package:
-var O = require('ose').module(module);
-O.package = 'ose-example-rpi';
+const O = require('ose')(module)
+  .setPackage('ose-example-rpi')
+;
 
 var Path = require('path');
 
@@ -156,22 +157,6 @@ exports['ose-html5'] = {
       }
     },
     {
-      caption: 'Camera',
-      view: 'detail',
-      ident: {
-        entry: 'camera1',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Images',
-      view: 'list',
-      query: 'all',
-      ident: {
-        shard: 'rpiImages',
-      }
-    },
-    {
       caption: 'Light',
       view: 'detail',
       ident: {
@@ -194,6 +179,42 @@ exports['ose-html5'] = {
         entry: 'switch1',
         shard: 'rpi',
       }
+    },
+    {
+      caption: 'High tariff',
+      view: 'detail',
+      ident: {
+        entry: 'highTariff',
+        shard: 'rpi',
+      }
+    },
+    {
+      caption: 'Camera',
+      view: 'detail',
+      ident: {
+        entry: 'camera1',
+        shard: 'rpi',
+      }
+    },
+    {
+      caption: 'Images',
+      view: 'list',
+      ident: {
+        query: 'all',
+        shard: 'rpiImages',
+      }
+    },
+    {
+      caption: 'Pin entries',
+      view: 'list',
+      listItems: true,
+      ident: {
+        query: 'name',
+        shard: 'rpi',
+      },
+      filter: {
+        role: 'pin',
+      },
     },
   ],
 };
@@ -278,6 +299,7 @@ function initRpi(transaction, cb) {
     name: 'High tariff state',
     master: 'rpi',
     pin: 15,
+    debounce: 2 * 1000,
   });
 
   // Entry representing heater

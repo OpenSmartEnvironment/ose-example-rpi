@@ -1,6 +1,6 @@
 'use strict';
 
-var O = require('ose').module(module);
+const O = require('ose')(module);
 
 module.exports = exports = require('../bin/run');
 
