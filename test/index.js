@@ -110,7 +110,7 @@ exports.socket = exports.connectBrowser(function(cb) {  // {{{2
 });
 
 exports.add('Dashboard', {runtime: 'browser'}, function(cb) {  // {{{2
-  return O.ui.display({content: {view: 'dashboard'}}, function(err) {
+  return O.ui.display({main: {view: 'dashboard'}}, 'user', function(err) {
     if (err) return cb(err);
 
     var d = Html5.find(O.ui.main, 'ul');
