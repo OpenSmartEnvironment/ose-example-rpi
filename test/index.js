@@ -110,10 +110,10 @@ exports.socket = exports.connectBrowser(function(cb) {  // {{{2
 });
 
 exports.add('Dashboard', {runtime: 'browser'}, function(cb) {  // {{{2
-  return O.ui.display({main: {view: 'dashboard'}}, 'user', function(err) {
+  return O.ui.body.display({main: {view: 'dashboard'}}, 'user', function(err) {
     if (err) return cb(err);
 
-    var d = Html5.find(O.ui.main, 'ul');
+    var d = Html5.find(O.ui.body.main, 'ul');
     Html5.html(d.header, 'Dashboard');
     var items = Html5.list(d, 'li>div>h3', ['Raspberry Pi', 'Camera', 'Images', 'Light', 'Heater', 'Switch', 'Lights', 'Heaters']);
 
