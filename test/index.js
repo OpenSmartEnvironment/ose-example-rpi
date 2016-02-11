@@ -2,7 +2,6 @@
 
 const O = require('ose')(module)
   .singleton('ose-test/lib/suite')
-//  .prepend('node')
 ;
 
 exports = O.init('test/test');
@@ -113,12 +112,12 @@ exports.add('Dashboard', {runtime: 'browser'}, function(cb) {  // {{{2
   return O.ui.body.display({main: {view: 'dashboard'}}, 'user', function(err) {
     if (err) return cb(err);
 
-    var d = Html5.find(O.ui.body.main, 'ul');
-    Html5.html(d.header, 'Dashboard');
-    var items = Html5.list(d, 'li>div>h3', ['Raspberry Pi', 'Camera', 'Images', 'Light', 'Heater', 'Switch', 'Lights', 'Heaters']);
+    var dashboard = Html5.find(O.ui.body.main, 'ul');
+    Html5.html(dashboard.header.find('h2'), 'Dashboard');
+    Html5.list(dashboard, 'li>h3', ['Raspberry Pi', 'Pin entries', 'Camera', 'Images'/*, 'Light', 'Heater', 'Switch', 'High tariff'*/]);
 
     return O.async.nextTick(function() {
-      items[0].click();
+      dashboard.find('li:first-child').trigger('tap');
       exports.view = Html5.awaitView(cb);
     });
   });
@@ -128,10 +127,20 @@ exports.add('Emulate switch', {runtime: 'node'}, function(cb) {  // {{{2
   exports.rpi.post('emulatePin', {index: 4, value: 1}, cb);
 });
 
-exports.awaitSocket(exports.socket);
+exports.awaitSocket(exports.socket);  // {{{2
 
 exports.add('Read switch', {runtime: 'browser'}, function(cb) {  // {{{2
-  exports.list = Html5.list(exports.view, 'li > div > h3 > span:first-child', ['4 – din', '14 – dout', '15 – din', '17 – dout']);
+  exports.list = Html5.list(
+    exports.view,
+    'li > section.row > section.stretch > h3',
+    [
+      '4 – din (switch)',
+      '14 – dout (light)',
+      '15 – din',
+      '17 – dout'
+    ]
+  );
+
   return cb();
 });
 

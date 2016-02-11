@@ -19,7 +19,7 @@
  * ## Usage
  *
  * For the Raspberry Pi example application to work, you need the following prerequisites:
- * - Node.js > 0.10, npm, git
+ * - Node.js > 0.12, npm, git
  * - bower<br>
  *   `sudo npm install -g bower`
  *
@@ -67,31 +67,34 @@
 
 // The OSE framework is initialized by requiring the "ose" package:
 const O = require('ose')(module)
+  // This is main package file and we tell ose the name of the package
   .setPackage('ose-example-rpi')
 ;
 
 var Path = require('path');
 
-/*!
- * OSE is configured by a configuration object, `module.exports` in
- * this case. Each property of this object defines the configuration
- * for one [OSE plugin].
- */
+// OSE is configured by a configuration object, `module.exports` in
+// this case. Each property of this object defines the configuration
+// for one OSE plugin.
 
 
 // Basic properties of OSE instance
 exports.ose = {
-  name: 'rpi',           // Name of this OSE instance
-  space: 'example.org',  // Space name this instance belongs to
+  // Name of this OSE instance
+  name: 'rpi',
+  // Space name this instance belongs to
+  space: 'example.org',
+  // Instance id unique within the space
   spid: 2,
-  dummy: true,  // Enable this to use this example without GPIO capable hardware
+  // Enable `dummy` to use this example without GPIO capable hardware in demo mode
+  dummy: true,
 };
 
 
-// Enable general control package
+// Enable control package
 exports['ose-control'] = {};
 
-// Enable general rpi player package
+// Enable rpi package
 exports['ose-rpi'] = {};
 
 // Enable filesystem support
@@ -99,13 +102,14 @@ exports['ose-fs'] = {};
 
 
 // Enable CLI interface
-exports.cli = {
-  id: 'ose/lib/cli',
-
-  // CLI can run some commands:
+exports['ose/lib/cli'] = {
+  // CLI can run some commands after initialization:
   script: [
+    // Wait x milliseconds
     'wait 2000',
+    // Select space `example.org`
     'space example.org',
+    // Select shard with `rpi` alias
     'shard rpi',
 
   /*
@@ -155,56 +159,7 @@ exports['ose-html5'] = {
         entry: 'rpi',
         shard: 'rpi',
       }
-    },
-    {
-      caption: 'Light',
-      view: 'detail',
-      ident: {
-        entry: 'light1',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Heater',
-      view: 'detail',
-      ident: {
-        entry: 'heater1',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Switch',
-      view: 'detail',
-      ident: {
-        entry: 'switch1',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'High tariff',
-      view: 'detail',
-      ident: {
-        entry: 'highTariff',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Camera',
-      view: 'detail',
-      ident: {
-        entry: 'camera1',
-        shard: 'rpi',
-      }
-    },
-    {
-      caption: 'Images',
-      view: 'list',
-      ident: {
-        query: 'all',
-        shard: 'rpiImages',
-      }
-    },
-    {
+    }, {
       caption: 'Pin entries',
       view: 'list',
       listItems: true,
@@ -215,53 +170,112 @@ exports['ose-html5'] = {
       filter: {
         role: 'pin',
       },
-    },
+    }, {
+      caption: 'Camera',
+      view: 'detail',
+      ident: {
+        entry: 'camera1',
+        shard: 'rpi',
+      }
+    }, {
+      caption: 'Images',
+      view: 'list',
+      ident: {
+        query: 'all',
+        shard: 'rpiImages',
+      }
+    /*
+    }, {
+      caption: 'Light',
+      view: 'detail',
+      ident: {
+        entry: 'light1',
+        shard: 'rpi',
+      }
+    }, {
+      caption: 'Heater',
+      view: 'detail',
+      ident: {
+        entry: 'heater1',
+        shard: 'rpi',
+      }
+    }, {
+      caption: 'Switch',
+      view: 'detail',
+      ident: {
+        entry: 'switch1',
+        shard: 'rpi',
+      }
+    }, {
+      caption: 'High tariff',
+      view: 'detail',
+      ident: {
+        entry: 'highTariff',
+        shard: 'rpi',
+      }
+    */
+    }
   ],
 };
 
 
 // Definition of data structure, the space named "example.org" contains all your data
 exports.space = {
-  id: 'ose/lib/space',         // Plugin module id
-  name: 'example.org',         // Name of the space
-  home: 'player',              // Home instance of the space
+  // Plugin module id
+  id: 'ose/lib/space',
+  // Name of the space
+  name: 'example.org',
+  // Home instance of the space
+  home: 'player',
 
   // Peers to connect to
   peers: {
     // Media player OSE instance - Change the following IP
     // address to that of the media player instance.
-    player: 'CHANGE_ME',  // example url: `player: 'ws://10.166.25.8:4431'`
+    // example url: <br> `player: 'ws://10.166.25.8:4431'`
+    player: 'CHANGE_ME',
   }
 };
 
 // The space is partitioned into shards:
+
 // Raspberry Pi shard
 exports.control = {
-  id: 'ose/lib/shard',      // Plugin module id
-  sid: 6,                   // Shard id unique within the space
-  schema: 'control',        // Schema the shard belongs to
-  alias: 'rpi',             // Shard alias
+  id: 'ose/lib/shard',
+  // Shard id unique within the space
+  sid: 6,
+  // Schema the shard belongs to
+  schema: 'control',
+  // Shard alias
+  alias: 'rpi',
+  // Fill new empty shard with some data
   upgrades: [
-    initRpi,  // Method initializing entries belonging to the shard, defined below
+    // Method initializing entries belonging to the shard, defined below
+    initRpi,
   ],
 };
 
-// Images taken by camera1
+// Images taken by camera1 are saved to the following shard
 exports.images = {
-  id: 'ose/lib/shard',      // Plugin module id
-  sid: 7,                   // Shard id unique within the space
-  schema: 'fs',             // Schema the shard belongs to
-  alias: 'rpiImages',       // Shard alias
+  id: 'ose/lib/shard',
+  // Shard id unique within the space
+  sid: 7,
+  // Schema the shard belongs to
+  schema: 'fs',
+  // Shard alias
+  alias: 'rpiImages',
+  // Root for shard data
   root: Path.dirname(Path.dirname(module.filename)) + '/images',
 };
 
 // "rpi" shard initialization method.
 function initRpi(transaction, cb) {
+
   // Entry representing Raspberry Pi
   transaction.add('rpi', {
     alias: 'rpi',
     name: 'Raspberry Pi 1',
-    dummy: exports.ose.dummy,  // Enable this to use this example without GPIO capable hardware
+    dummy: exports.ose.dummy,
   });
 
   // Entry representing camera
