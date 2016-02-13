@@ -29,6 +29,7 @@
     "ose-control": "git+https://github.com/OpenSmartEnvironment/ose-control.git",
     "ose-fs": "git+https://github.com/OpenSmartEnvironment/ose-fs.git",
     "ose-html5": "git+https://github.com/OpenSmartEnvironment/ose-html5.git",
+    "ose-level": "git+https://github.com/OpenSmartEnvironment/ose-level.git",
     "ose-rpi": "git+https://github.com/OpenSmartEnvironment/ose-rpi.git"
   },
   "license": "GPL-3.0+",
