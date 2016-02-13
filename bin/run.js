@@ -20,8 +20,6 @@
  *
  * For the Raspberry Pi example application to work, you need the following prerequisites:
  * - Node.js > 0.12, npm, git
- * - bower<br>
- *   `sudo npm install -g bower`
  *
  * To install the example application, do the following:
  *
@@ -32,15 +30,16 @@
  * If you want to use this example on a BeagleBone, see [these
  * instructions](https://github.com/fivdi/onoff#installation).
  *
+ * To configure this example, edit `ose-example-rpi/bin/run.js`.
  * If you wish to use this example together with the [Media player example],
- * configure its IP address and port number within your network in
- * `bin/run.js`.
+ * configure its IP address and port number.
  *
  *     player: 'ws://IP_ADDRESS:PORT'
  *
+ *
  * Start the Raspberry Pi example as follows:
  *
- *     ./bin/run.js
+ *     ./ose-example-rpi/bin/run.js
  *
  *
  * To access the [HTML5 frontend], open the following URL in Firefox
@@ -77,7 +76,6 @@ var Path = require('path');
 // this case. Each property of this object defines the configuration
 // for one OSE plugin.
 
-
 // Basic properties of OSE instance
 exports.ose = {
   // Name of this OSE instance
@@ -90,7 +88,6 @@ exports.ose = {
   dummy: true,
 };
 
-
 // Enable control package
 exports['ose-control'] = {};
 
@@ -99,7 +96,6 @@ exports['ose-rpi'] = {};
 
 // Enable filesystem support
 exports['ose-fs'] = {};
-
 
 // Enable CLI interface
 exports['ose/lib/cli'] = {
@@ -139,13 +135,11 @@ exports['ose/lib/cli'] = {
   ],
 };
 
-
 // Enable HTTP server
 exports.http = {
   id: 'ose/lib/http',
   port: 4432,
 };
-
 
 // Enable HTML5 frontend
 exports['ose-html5'] = {
@@ -217,7 +211,6 @@ exports['ose-html5'] = {
     }
   ],
 };
-
 
 // Definition of data structure, the space named "example.org" contains all your data
 exports.space = {
