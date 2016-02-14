@@ -39,23 +39,25 @@ For more information about OSE see **[the documentation](http://opensmartenviron
 - Pre-alpha stage (insecure and buggy)
 - Unstable API
 - Patchy documentation
-- No test suite
+- Low test coverage (1 %)
 
 This is not yet a piece of download-and-use software. It is important
 to understand the basic principles covered by the
 [documentation](http://opensmartenvironment.github.io/doc/).
 
+However, this software is successfully and continuously used since end
+of 2013 in one installation running 7 OSE instances spread over several
+Raspberries, HTPC and notebook.
+
 ## Platforms
 OSE has the following prerequisites:
-- Node.js (>0.10) running on Debian Jessie and Raspbian
-- Firefox 37 or newer with Web Components enabled
+- Node.js (>0.12) running on Debian Jessie and Raspbian
+- Recent version of Firefox or Chrome browser
 
 ## Usage
 
 For the Raspberry Pi example application to work, you need the following prerequisites:
-- Node.js > 0.10, npm, git
-- bower<br>
-  `sudo npm install -g bower`
+- Node.js > 0.12, npm, git
 
 To install the example application, do the following:
 
@@ -63,24 +65,24 @@ To install the example application, do the following:
     cd ose-example-rpi
     npm install
 
+Installing dependencies can take some time.
+
 If you want to use this example on a BeagleBone, see [these
 instructions](https://github.com/fivdi/onoff#installation).
 
+To configure this example, edit `ose-example-rpi/bin/run.js`.
 If you wish to use this example together with the [Media player example](http://opensmartenvironment.github.io/doc/#mediaplayerexample),
-configure its IP address and port number within your network in
-`bin/run.js`.
+configure its IP address and port number.
 
     player: 'ws://IP_ADDRESS:PORT'
 
+
 Start the Raspberry Pi example as follows:
 
-    ./bin/run.js
+    ./ose-example-rpi/bin/run.js
 
 
-To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in Firefox
-**37 or newer** (Iceweasel in Debian Jessie is too old).<br>
-**Before opening the link, enable the `dom.webcomponents.enabled`
-option in `about:config`.**
+To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in [supported browser](http://opensmartenvironment.github.io/doc/#supportedbrowser)
 
     http://localhost:4432
 
