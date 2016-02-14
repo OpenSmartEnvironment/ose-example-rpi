@@ -27,6 +27,8 @@
  *     cd ose-example-rpi
  *     npm install
  *
+ * Installing dependencies can take some time.
+ *
  * If you want to use this example on a BeagleBone, see [these
  * instructions](https://github.com/fivdi/onoff#installation).
  *
@@ -42,10 +44,7 @@
  *     ./ose-example-rpi/bin/run.js
  *
  *
- * To access the [HTML5 frontend], open the following URL in Firefox
- * **37 or newer** (Iceweasel in Debian Jessie is too old).<br>
- * **Before opening the link, enable the `dom.webcomponents.enabled`
- * option in `about:config`.**
+ * To access the [HTML5 frontend], open the following URL in [supported browser]
  *
  *     http://localhost:4432
  *
@@ -226,7 +225,8 @@ exports.space = {
     // Media player OSE instance - Change the following IP
     // address to that of the media player instance.
     // example url: <br> `player: 'ws://10.166.25.8:4431'`
-    player: 'CHANGE_ME',
+//    player: 'CHANGE_ME',
+    player: 'ws://10.166.26.2:4431',
   }
 };
 
